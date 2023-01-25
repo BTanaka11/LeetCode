@@ -31,9 +31,3 @@ var longestConsecutive = function(nums) {
     return Math.max(longest, tempLongest)
     
 };
-
-// [ , , , ,100 , , , , , , , ]
-
-// [100,4,200,1,3,2]
-
-// [ [200], [1], [2], [3], [100,4], []]
