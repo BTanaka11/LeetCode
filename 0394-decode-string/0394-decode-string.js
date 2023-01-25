@@ -6,9 +6,7 @@ var decodeString = function(s) {
     
     
     let resultString = '';
-    let stackz = [];
     let numberStart = null;
-    let huntingMode = false;
     
     let i = 0;
     while (i < s.length) {
@@ -36,5 +34,4 @@ var decodeString = function(s) {
         i ++;
     }
     return resultString
-
 };
