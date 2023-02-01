@@ -20,8 +20,8 @@ var flatten = function(root) {
         return root;
     }
     
-    let leftTail = flatten(root.left);
-    let rightTail = flatten(root.right);
+    let leftTail = root.left ? flatten(root.left) : null;
+    let rightTail = root.right ? flatten(root.right) : null;
     
     if (leftTail && rightTail) {
         leftTail.right = root.right;
