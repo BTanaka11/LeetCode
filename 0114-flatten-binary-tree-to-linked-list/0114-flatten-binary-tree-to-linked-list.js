@@ -11,22 +11,29 @@
  * @return {void} Do not return anything, modify root in-place instead.
  */
 var flatten = function(root) {
-    //depth first search, starting right side. add nodes to skeleton array. then loop through array to reconnect left/right to turn into LL.
-    
-    let skeletonArray = [];
-    
-    let recursiveFunc = function(node) {
-        if (!node) {
-            return;
-        }
-        recursiveFunc(node.right);
-        recursiveFunc(node.left);
-        skeletonArray.push(node);
+
+    if (!root) {
+        return null;
     }
-    recursiveFunc(root);
-    for (let i = skeletonArray.length - 1; i >= 0; i --) {
-        skeletonArray[i].left = null;
-        skeletonArray[i].right = skeletonArray[i - 1] || null;
+    
+    if (root.left === null && root.right === null) {
+        return root;
     }
-    return root;
+    
+    let leftTail = flatten(root.left);
+    let rightTail = flatten(root.right);
+    
+    if (leftTail && rightTail) {
+        leftTail.right = root.right;
+        root.right = root.left;
+        root.left = null;
+        return rightTail;
+    } else if (leftTail && !rightTail) {
+        root.right = root.left;
+        root.left = null;
+        return leftTail;
+    } else if (!leftTail && rightTail) {
+        return rightTail;
+    }
+    
 };
