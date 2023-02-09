@@ -39,7 +39,7 @@ var searchMatrix = function(matrix, target) {
         }
         let changed = false;
         if (typeRow) {
-            //process rows;
+            //process rows;i
             let r = rEnd;
             while (r >= rStart && matrix[r][cEnd] >= target) {
                 r --;
