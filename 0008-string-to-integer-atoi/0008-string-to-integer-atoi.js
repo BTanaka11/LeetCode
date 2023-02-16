@@ -23,14 +23,14 @@ var myAtoi = function(s) {
     let numb = parseInt(s[i]);
     while (!isNaN(numb)) {
         rev = rev * 10 + numb * neg;
-        if (rev < (-2)**31) {
-            return (-2)**31
-        }
-        if (rev > 2**31 - 1) {
-            return (2**31 - 1)
-        }
         i ++;
         numb = parseInt(s[i]);
+    }
+    if (rev < (-2)**31) {
+        return (-2)**31
+    }
+    if (rev > 2**31 - 1) {
+        return (2**31 - 1)
     }
     return rev;
 };
