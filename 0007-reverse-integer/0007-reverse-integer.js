@@ -4,8 +4,13 @@
  */
 var reverse = function(x) {
     let result = 0;
-    let neg = x < 0 ? -1 : 1;
-    x = Math.abs(x)
+    let neg;
+    if (x < 0) {
+        neg = -1;
+        x = Math.abs(x)
+    } else {
+        neg = 1;
+    }
 
     while (x != 0) {
         let firstDig = x % 10;
