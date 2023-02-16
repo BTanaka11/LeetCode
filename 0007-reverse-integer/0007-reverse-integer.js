@@ -11,16 +11,18 @@ var reverse = function(x) {
     } else {
         neg = 1;
     }
-    let upperRange = 2**31 - 1;
-    let lowerRange = (-2)**31;
+    // let upperRange = 2**31 - 1;
+    // let lowerRange = (-2)**31;
     while (x != 0) {
         let firstDig = x % 10;
         result += (x % 10) * (10 ** Math.floor(Math.log10(x)));
         x = Math.floor(x / 10);
-        if (result < lowerRange || result > upperRange) {
-            return 0
-        }
     }
+    
+    if (result < ((-2)**31) || result > (2**31 - 1)) {
+        return 0
+    }
+    
     return result * neg;
     
 };
