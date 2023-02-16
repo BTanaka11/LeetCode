@@ -20,12 +20,13 @@ var myAtoi = function(s) {
     } else {
         neg = 1;
     }
-    let numb = parseInt(s[i]);
-    while (!isNaN(numb)) {
-        rev = rev * 10 + numb * neg;
+    
+    while (!isNaN(parseInt(s[i]))) {
+        rev = rev * 10 + parseInt(s[i]) ;
         i ++;
-        numb = parseInt(s[i]);
     }
+    rev *= neg;
+    
     if (rev < (-2)**31) {
         return (-2)**31
     }
