@@ -4,13 +4,23 @@
  */
 var reverse = function(x) {
     let result = 0;
-    let neg = x < 0 ? -1 : 1;
-    x = Math.abs(x);
-    while (result >= (-2)**31 && result <= (2**31 - 1) && x != 0) {
-        let firstDig = x % 10;
-        result += firstDig * (10 ** Math.floor(Math.log10(x)));
-        x = Math.floor(x / 10);
+    let neg;
+    if (x < 0) {
+        neg = -1;
+        x = Math.abs(x)
+    } else {
+        neg = 1;
     }
-    return x > 0 ? 0 : result * neg;
+    let upperRange = 2**31 - 1;
+    let lowerRange = (-2)**31;
+    while (x != 0) {
+        let firstDig = x % 10;
+        result += (x % 10) * (10 ** Math.floor(Math.log10(x)));
+        x = Math.floor(x / 10);
+        if (result < lowerRange || result > upperRange) {
+            return 0
+        }
+    }
+    return result * neg;
     
 };
