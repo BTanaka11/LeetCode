@@ -20,15 +20,17 @@ var myAtoi = function(s) {
     } else {
         neg = 1;
     }
-    while (Number.isNaN(parseInt(s[i])) === false) {
-        rev = rev * 10 + Number(s[i]);
-        if (rev*neg < (-2)**31) {
+    let numb = parseInt(s[i]);
+    while (!isNaN(numb)) {
+        rev = rev * 10 + numb * neg;
+        if (rev < (-2)**31) {
             return (-2)**31
         }
-        if (rev*neg > 2**31 - 1) {
+        if (rev > 2**31 - 1) {
             return (2**31 - 1)
         }
         i ++;
+        numb = parseInt(s[i]);
     }
-    return rev*neg;
+    return rev;
 };
