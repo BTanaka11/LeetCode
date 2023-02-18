@@ -2,20 +2,20 @@
  * @param {number} n
  * @return {string}
  */
-var countAndSay = function(n) {
-    if (n === 1) {
-        return "1";
-    }
-    let result = countAndSay(n - 1);
-    let count = 1;
-    let resultStr = [];
-    for (let i = 0; i < result.length; i ++) {
-        if (result[i + 1] != result[i]) {
-            resultStr.push(count, result[i])
-            count = 1;
-        } else {
-            count ++
+var countAndSay = function(n) { 
+    let result = [1];
+    for (let i = 2; i <= Number(n); i ++) {
+        let temp = [];
+        let count = 1;
+        for (let j = 0; j < result.length; j ++) {
+            if (result[j + 1] != result[j]) {
+                temp.push(count, result[j]);
+                count = 1;
+            } else {
+                count ++;
+            }
         }
+        result = temp;
     }
-    return resultStr.join('');
+    return result.join('');
 };
