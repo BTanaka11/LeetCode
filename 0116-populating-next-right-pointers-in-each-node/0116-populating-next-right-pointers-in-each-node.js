@@ -15,23 +15,30 @@
 var connect = function(root) {
     //plan = DFS. first step = for everything currently in qeue except last item, set its next. then enqueue children.
     
-    let qeue = [];
-    let node = root;
-    while (node) {
+//     let qeue = [];
+//     let node = root;
+//     while (node) {
         
-        if (node.left) {
-            node.left.next = node.right;
-            if (qeue.length > 0) {
-                qeue[qeue.length - 1].next = node.left;
-            }
-            qeue.push(node.left, node.right);
-        }
-        node = qeue.shift();
-    }
-    node = root;
-    while (node) {
-        node.next = null;
-        node = node.right;
-    }
-    return root
+//         if (node.left) {
+//             node.left.next = node.right;
+//             if (qeue.length > 0) {
+//                 qeue[qeue.length - 1].next = node.left;
+//             }
+//             qeue.push(node.left, node.right);
+//         }
+//         node = qeue.shift();
+//     }
+//     node = root;
+//     while (node) {
+//         node.next = null;
+//         node = node.right;
+//     }
+//     return root
+    
+    if (root == null || root.left == null) return root;
+    root.left.next = root.right;
+    root.right.next = root.next ? root.next.left:null;
+    connect(root.left);
+    connect(root.right);
+    return root;
 };
