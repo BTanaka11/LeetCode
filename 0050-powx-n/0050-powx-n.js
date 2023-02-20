@@ -9,20 +9,14 @@ var myPow = function(x, n) {
         return 1;
     }
     x = Math.abs(x);
-    let powHalved
-    if (n >= 0) {
-        powHalved = myPow(x*neg, Math.floor(n/2));
-        powHalved = powHalved * powHalved ;
-        if (n%2 !== 0) {
-            powHalved *= x  * neg;
+    let powHalved = myPow(x*neg, (n>=0 ? 1:-1) * Math.floor(Math.abs(n)/2));
+    powHalved **= 2;
+    if (n%2 !== 0) {
+        if (n >= 0) {
+            powHalved *= x * neg;
+        } else {
+            powHalved /= x * neg;
         }
-        return powHalved;
-    } else {
-        powHalved = myPow(x*neg, - Math.floor(Math.abs(n)/2));
-        powHalved = powHalved * powHalved;
-        if (n%2 !== 0) {
-            powHalved /= x  * neg;
-        }
-        return powHalved;
     }
+    return powHalved;
 };
