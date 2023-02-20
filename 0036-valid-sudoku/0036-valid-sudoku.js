@@ -3,11 +3,11 @@
  * @return {boolean}
  */
 var isValidSudoku = function(board) {
-    let rowsHist = new Array(9).fill(null).map(()=>(new Array(9).fill(false)))
-    let colsHist = new Array(9).fill(null).map(()=>(new Array(9).fill(false)))
-    let quadrantHist = new Array(9).fill(null).map(()=>(new Array(9).fill(false)))
-
-    for (let r = 0; r < 9; r ++) {
+    let rowsHist = new Array(9).fill(null).map(()=>(new Array(9)))
+    let colsHist = new Array(9).fill(null).map(()=>(new Array(9)))
+    let quadrantHist = new Array(9).fill(null).map(()=>(new Array(9)))
+    
+    for (let r = 0; r < 9; r ++) {        
         for (let c= 0; c < 9; c ++) {
             let cell = board[r][c];
             if (cell != '.') {
@@ -20,9 +20,7 @@ var isValidSudoku = function(board) {
                     return false;
                 }
                 colsHist[c][cell] = true;
-                let quad = (Math.ceil((r+1)/3) - 1) * 3;
-                let colHelp = Math.ceil((c+1)/3);
-                quad += colHelp - 1;
+                let quad = (Math.ceil((r+1)/3) - 1) * 3 + Math.ceil((c+1)/3) - 1;
                 if (quadrantHist[quad][cell]  === true) {
                     return false;
                 }
