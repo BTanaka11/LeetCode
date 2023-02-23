@@ -32,7 +32,6 @@ var solve = function(board) {
             recurse(r, board[0].length - 1);
         }
     }
-    console.log(board)
     for (let r = 0; r < board.length; r ++) {
         for (let c = 0; c < board[0].length; c ++) {
             if (board[r][c] === 'O') {
