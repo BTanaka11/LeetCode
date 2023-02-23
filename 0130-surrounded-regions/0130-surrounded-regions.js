@@ -5,26 +5,34 @@
 var solve = function(board) {
     
     let recurse = (r, c) => {
-        if (r < 0 || r === board.length || c < 0 || c === board[0].length || board[r][c] != 'O') {
+        if (r < 0 || c < 0 || r >= board.length || c >= board[0].length || board[r][c] != 'O') {
             return;
         }
         board[r][c] = 't';
         recurse(r + 1, c);
-        recurse(r - 1, c);
         recurse(r, c + 1);
+        recurse(r - 1, c);
         recurse(r, c - 1);
     }
     
-    //top and bottom row
     for (let c = 0; c < board[0].length; c ++) {
-        recurse(0, c);
-        recurse(board.length - 1, c);
+        if (board[0][c] === 'O') {
+            recurse(0, c);
+        }
+        if (board[board.length - 1][c] === 'O') {
+            recurse(board.length - 1, c);
+        }
     }
-    //left and right columns
+    
     for (let r = 0; r < board.length; r ++) {
-        recurse(r, 0);
-        recurse(r, board[0].length - 1);
+        if (board[r][0] === 'O') {
+            recurse(r, 0);
+        }
+        if (board[r][board[0].length - 1] === 'O') {
+            recurse(r, board[0].length - 1);
+        }
     }
+    console.log(board)
     for (let r = 0; r < board.length; r ++) {
         for (let c = 0; c < board[0].length; c ++) {
             if (board[r][c] === 'O') {
