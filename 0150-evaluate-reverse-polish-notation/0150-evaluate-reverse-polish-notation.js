@@ -4,23 +4,25 @@
  */
 var evalRPN = function(tokens) {
 
-    let stack = [];
+    let indexLastNum = -1;
     for (let i = 0; i < tokens.length; i ++) {
         if (tokens[i] === '+') {
-            let removed = stack.pop();
-            stack[stack.length - 1] += removed;
+            tokens[indexLastNum - 1] += tokens[indexLastNum]
+            indexLastNum--;
         } else if (tokens[i] === '-') {
-            let removed = stack.pop();
-            stack[stack.length - 1] -= removed;
+            tokens[indexLastNum - 1] -= tokens[indexLastNum]
+            indexLastNum--;
         } else if (tokens[i] === '*') {
-            let removed = stack.pop();
-            stack[stack.length - 1] *= removed;
+            tokens[indexLastNum - 1] *= tokens[indexLastNum]
+            indexLastNum--;
         } else if (tokens[i] === '/') {
-            let removed = stack.pop();
-            stack[stack.length - 1] = parseInt(stack[stack.length - 1] / removed);
+            tokens[indexLastNum - 1] = parseInt(tokens[indexLastNum - 1] / tokens[indexLastNum]);
+            indexLastNum--;
         } else {
-            stack.push(parseInt(tokens[i]));
+            indexLastNum++;
+            tokens[indexLastNum] = parseInt(tokens[i])
         }
     }
-    return stack[stack.length - 1];
+    
+    return tokens[indexLastNum];
 };
