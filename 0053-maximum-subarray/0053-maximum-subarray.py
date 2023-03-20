@@ -4,7 +4,6 @@ class Solution:
         tempSum = nums[0]
         
         for i in range(1, len(nums)):
-            
             if nums[i] + tempSum <= nums[i]:
                 maxr = max(maxr, tempSum)
                 tempSum = nums[i]
@@ -13,4 +12,4 @@ class Solution:
             if tempSum > maxr:
                 maxr = tempSum
         
-        return max(maxr, tempSum)
+        return maxr
