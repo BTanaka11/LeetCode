@@ -5,12 +5,13 @@ class Solution:
         for i in range(1, len(nums)):
             if nums[i] >= tempSum + nums[i]:
             # if tempSum + nums[i] <= nums[i]:
-                
-                maxSum = max(maxSum, tempSum)
+                if tempSum > maxSum:
+                    maxSum = tempSum
                 tempSum = nums[i]
             else:
                 tempSum += nums[i]
-            maxSum = max(maxSum, tempSum)
+            if tempSum > maxSum:
+                maxSum = tempSum
             
         return max(maxSum, tempSum)
                 
