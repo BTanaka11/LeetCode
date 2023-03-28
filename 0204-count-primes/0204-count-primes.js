@@ -16,4 +16,3 @@ var countPrimes = function(n) {
     }
     return result;
 };
-
